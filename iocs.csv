@@ -1,0 +1,49 @@
+type,value,context
+sha256,ec1a685c6eaf825d670f789857002a4e32a8f6a162bbcc31144df25ac72790ed,Bảng lương.zip original container
+md5,c3600267ffb341a808bdc941cd213e78,Bảng lương.zip original container
+sha256,f8ef62e4276e61b01435874c2385ba8b80d8b98d7b7d056f2f3ddffd27a3c5a8,Bảng lương.exe WinRAR SFX dropper
+sha256,ad7349f1877538752b1a593906f68ef4f20aa30b2ab670f3cd9da40ed1ebf54a,carved payload.rar (appended to SFX)
+sha256,2451129aedd9d7a60e7a35639e753fe79887ae075d65872181debb9adba69dac,TG_Soft.sys kernel EDR-killer driver
+sha256,734b6729731d85988627e84b01d22298c04378e4949c5e69c34237a4574f3dcb,xweb_elf.dll malicious sideloaded orchestrator
+sha256,09cd30b1b25da3ff6661be589d5c31460e51e9ee8e7925df37826456bb8da2bc,TGFile.exe Sangfor-signed LuaJIT runner
+sha256,8b754733762658c0d8b2a4e8b5ad6a4a19bc56d18c0363e6a63fad570c4a0abf,hide.log LuaJIT plugin (shellcode stager)
+sha256,8fb2bd680e185bce54529d506ffc67d4afae84a04791598b029eaf088d1a1f1c,regite.log LuaJIT plugin (COM hijack)
+sha256,16cfe3f43c4eede7f7ddcb9f8db876da80d4e58f0bdeab878c49a590a2f33e12,new.jpg LuaJIT source (schtasks persistence)
+sha256,1349d8be2179ab1343f00d21d4a428e1794a5d844888c7b7d067cff14270112a,set.log RC4-encrypted shellcode container
+sha256,5ba83d20a428042542e539662330624961f55c5a5c05aa9431c45df4b4ecba29,set_log_decrypted.bin decrypted shellcode
+sha256,dbb168e93248ccc39f4ab667510ef68401fcbd93d7ab012c2ae502ef9204bedf,embedded_rat_pe.bin carved RAT DLL
+sha256,355e34c71f6b3178092862529382566088aa80abeba67eb09fdf47852889b612,lua51.dll LuaJIT 2.1.0-beta3 engine
+sha256,5a2fdc4111ce15f24e9283eb6b135046fdf47b14b193646b61798b72ce3c687c,libepsbase.dll Sangfor-signed support lib
+sha256,e65b8040bebe1da6adb6927e289a3cee5f8a995906c8c2ac723f12e0fd230261,libssh2.dll AsiaInfo-signed network lib
+sha256,dcd1ed276f81fd7d5000c9178ebd78ce81833e53eaad87bcf338ed08951875ac,pnpdiag.dll unattributed suspicious DLL
+sha256,93134a6cad49a6cb1571ebcf908ae2e457de7bd2aebabd44924b414b5dd4ad27,vpncore.log decoy OpenVPN log (C2 leak)
+sha256,0926cebf835a3b926ce7dcf4b9db9420c696761b1dda94232965b6f56348858d,log.s COM scriptlet persistence
+sha256,c522ce352d4416427d3143ca7acd67780d561dc1453d80563230266fac3ae305,WeChatAppEx.exe legit Tencent host (not malicious; context indicator)
+ipv4,182.140.242.59,C2 server (Tencent Cloud range) - port 13444 TCP OpenVPN-style tunnel
+network,182.140.242.59:13444,C2 endpoint
+rc4_key,s3ch0bachky,RC4 key decrypting set.log (publicly reported on kafan.cn sibling analysis)
+filepath,C:\ProgramLog\Windows\AppData\Log,SFX drop directory (fake AppData path)
+filepath,C:\ProgramLog,malware root folder (hidden via SetFileAttributesA)
+filename,TGFile.exe,LuaJIT plugin runner
+filename,TG_Soft.sys,EDR-killer driver
+filename,xweb_elf.dll,sideloaded orchestrator
+filename,hide.log;regite.log;new.jpg;set.log;log.s;vpncore.log,plugin/blob filenames
+filename,cuhjctyasbdtas.dll,next-stage module name referenced by xweb_elf.dll
+mutex,Global\TGFile_ShellcodeMutex,shellcode stage guard
+mutex,Local\TGFile_SetupMutex,persistence installer guard
+schtask,OneDirverUpdata,logon scheduled task (OneDrive-masquerade)
+registry,HKLM\SOFTWARE\Classes\TypeLib\{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}\1.1\0\win64,COM TypeLib hijack (IE WebBrowser typelib) -> scriptlet
+device,\Device\ProcKill,driver device object
+symlink,\??\ProcKill,driver symlink
+ioctl,0x80001c00,kill-by-PID IOCTL (input: 4-byte PID)
+pdb,D:\tools\驱动\MyDriver1-master\x64\Release\MyDrv1.pdb,driver build path (Chinese operator)
+pdb,D:\Projects\WinRAR\sfx\build\sfxrar64\Release\sfxrar.pdb,legit WinRAR SFX stub (context)
+export,zidingyixiugaidaochuhanshu,RAT DLL export (pinyin: custom-modified export function)
+certificate,CN=Anneng electronic Co. Ltd.;serial=2602bb9ba2ae651aeaa79aec38a3cb3d;issuer=Thawte Code Signing CA - G2;valid=2013-05-06..2014-05-06,signs TG_Soft.sys (abused legacy cert)
+certificate,CN=Sangfor Technologies Inc.;serial=9f980676d7d7e8d5eb042d2df477848;issuer=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1;valid=2023-03-23..2026-03-22,signs TGFile.exe + libepsbase.dll
+certificate,CN=亚信科技（成都）有限公司 (AsiaInfo Technologies Chengdu);serial=e3e33f20e065bf2b903353c2fb8e8e4;issuer=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1;valid=2023-12-15..2026-12-15,signs libssh2.dll
+certificate,CN=Tencent Technology (Shenzhen) Company Limited;serial=ddaf2fe51f3b2e94cbb695a4a5174fc,signs legit WeChatAppEx.exe (sideloading host - not malicious)
+luijit_magic,1B4C4A02,LuaJIT bytecode magic (plugins hide.log/regite.log)
+sfx_script,Silent=1;Overwrite=2;Path=C:\ProgramLog\Windows\AppData\Log;Setup=WeChatAppEx.exe;Setup=TGFile.exe hide.log;Setup=TGFile.exe regite.log;Setup=TGFile.exe new.jpg,WinRAR SFX auto-exec script
+comment,;下面的注释包含自解压脚本命令,Chinese operator note in RAR comment
+yara,bang-luong-campaign.yar,detection rules

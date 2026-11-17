@@ -1,0 +1,21 @@
+# ============================================================
+# DO NOT PUBLISH LIVE MALWARE BINARIES
+# This repo is published for DEFENSIVE purposes: the samples
+# are represented by hashes in analysis-artifacts/hashes.sha256
+# and IOCs in iocs.csv only.
+# ============================================================
+
+# Original sample
+Bảng lương.zip
+*.zip
+
+# Carved / extracted payloads
+analysis-artifacts/payload.rar
+analysis-artifacts/payload-files/
+analysis-artifacts/set_log_decrypted.bin
+analysis-artifacts/embedded_rat_pe.bin
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
